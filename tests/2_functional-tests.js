@@ -68,14 +68,19 @@ suite('Functional Tests', function () {
 
 const Browser = require('zombie');
 
+const browser = new Browser();
+
+Browser.site = 'https://mochachai-testing.k4tiek3nt.repl.co';
+
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
-
-
-
+  
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
-      assert.isNull(Browser.site);
+      assert.isNotNull(Browser.site);
+      suiteSetup(function(done) {
+    return browser.visit('/', done);
+  });
     });
   });
 
